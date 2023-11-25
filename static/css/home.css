@@ -1,0 +1,16 @@
+#body {
+    background-color: rgba(0, 0, 0, 0.836);
+    
+}
+
+#card {
+    margin-top: 50px;
+}
+
+.card-text {
+    color: red;
+}
+
+.card-img-top {
+    height: 150px;
+}
