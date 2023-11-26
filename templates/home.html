@@ -1,5 +1,4 @@
 {% extends "base/base.html" %}
-{% block title %}Va Sight{% endblock title %}
 {% block body %}
 {% load static %}
 
@@ -15,8 +14,9 @@
                   <img src="{{ players.image }}" class="card-img-top" alt="...">
                   <div class="card-body">
                       <h5 class="card-title">{{ players.player }}</h5>
-                      <p class="card-text">{{ players.key }}</p>
-                      <a href="#" class="btn btn-primary">COPIAR</a>
+                      <p class="card-text" id="key_copy">{{ players.key }}</p>
+                      <a class="btn btn-primary" onclick="copiarTexto()">COPIAR</a>
+                      
                   </div>
               </div>
           </div>
@@ -27,5 +27,5 @@
   </div>
 </div>
 
-
+<script src=" {% static 'js/home.js' %}"></script>
 {% endblock body %}
