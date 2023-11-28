@@ -1,24 +1,24 @@
+function copiarTexto(botao) {
+    // Encontra o elemento 'key_copy' dentro do card específico
+    var campo = botao.parentElement.querySelector("#key_copy");
 
-function copiarTexto() {
-    // Seleciona o elemento de texto
-    var campo = document.getElementById("key_copy");
+    if (campo) {
+        var range = document.createRange();
+        range.selectNode(campo);
 
-    // Cria um intervalo para selecionar o conteúdo do elemento
-    var range = document.createRange();
-    range.selectNode(campo);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
 
-    // Remove qualquer seleção anterior
-    window.getSelection().removeAllRanges();
-
-    // Adiciona o novo intervalo ao seletor
-    window.getSelection().addRange(range);
-
-    // Executa o comando de cópia
-    document.execCommand('copy');
-
-    // Deseleciona o campo
-    window.getSelection().removeAllRanges();
-
-    // Você pode adicionar feedback ao usuário, por exemplo, alerta ou mensagem
-    alert("Texto copiado: " + campo.textContent);
+        try {
+            document.execCommand('copy');
+            alert("Texto copiado: " + campo.textContent);
+        } catch (err) {
+            console.error('Erro ao tentar copiar texto:', err);
+            alert('Erro ao tentar copiar texto. Consulte o console para mais detalhes.');
+        } finally {
+            window.getSelection().removeAllRanges();
+        }
+    } else {
+        console.error('Elemento com ID "key_copy" não encontrado dentro do card.');
+    }
 }

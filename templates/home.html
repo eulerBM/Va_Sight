@@ -8,15 +8,14 @@
 
 <div class="container">
   <div class="row">
-      {% for players in player %}
+      {% for players in page_obj %}
           <div class="col-md-4">
               <div class="card" style="width: 20rem;" id="card">
                   <img src="{{ players.image }}" class="card-img-top" alt="...">
                   <div class="card-body">
                       <h5 class="card-title">{{ players.player }}</h5>
                       <p class="card-text" id="key_copy">{{ players.key }}</p>
-                      <a class="btn btn-primary" onclick="copiarTexto()">COPIAR</a>
-                      
+                      <a class="btn btn-primary" onclick="copiarTexto(this)">COPIAR</a>
                   </div>
               </div>
           </div>
@@ -26,6 +25,35 @@
       {% endfor %}
   </div>
 </div>
+
+
+
+<div class="container">
+    
+    <nav aria-label="...">
+        <ul class="pagination">
+
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Voltar</a>
+                </li>
+            {% endif %}
+
+            {% for number_pag in page_obj.paginator %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.number }}">{{ number_pag.number }}</a></li>
+            {% endfor%}
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próximo</a>
+                </li>
+            {% endif %}
+         
+        </ul>
+    </nav>
+
+</div>
+
 
 <script src=" {% static 'js/home.js' %}"></script>
 {% endblock body %}
